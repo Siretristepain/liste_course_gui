@@ -56,6 +56,21 @@ class Produit:
             return [("",0)]
         
         return all_items
+    
+    def _check_item(self):
+        """Méthode privée utilisée pour monitorer la présence d'un produit dans la bdd JSON.
+
+        Returns:
+            (bool) : 'True' si le produit est trouvé dans la bdd, 'False' sinon.
+        """
+        
+        # On fait appel à notre méthode '_get_items()' pour récupérer tous les produits de la bdd
+        all_items = self._get_items()
+
+        for tpl in all_items:
+            if tpl[0] == self.nom:
+                return True
+        return False
 
     
 if __name__ == '__main__':
@@ -67,3 +82,9 @@ if __name__ == '__main__':
 
     # Récupération des items de la bdd
     print(banane._get_items())
+
+    # On vérifie que la banane soit dans la bdd
+    print(banane._check_item())
+    # On crée un produit 'noix de coco' que l'on enregistre pas dans la bdd pour voir si _check_item() a bien le comportement attendu
+    coco = Produit(nom="noix de coco",quantite=1)
+    print(coco._check_item())
