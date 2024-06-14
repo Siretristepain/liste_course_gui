@@ -101,11 +101,25 @@ class Produit:
         # D'abord on vérifie que l'item ne soit pas déjà dans la bdd
         if self._check_item() == False:
             self._write_items()
-            return f"{self.nom} ajouté à la bdd"
+            return f"{self.nom} ajouté à la liste"
         else:
             return f"{self.nom} déjà dans la liste."
             # Là on pourrait ajouter une option pour savoir si l'utilisateur souhaite 
             # quand même ajouter l'item, auquel cas on ferait +1 sur la quantité de l'item.
+
+    def delete_item(self):
+        """Méthode pour supprimer un élément dans la bdd (JSON).
+        Elle utilise _check_items() au préalable pour s'assurer que le produit à retirer est dans la bdd.
+
+        Returns:
+            (str) : Information sur le retrait (ou le non retrait) de l'item dans la bdd.
+        """
+        # On ne peut supprimer l'item que si il existe déjà dans la bdd
+        if self._check_item() == True:
+            self._remove_items()
+            return f"{self.nom} supprimé de la liste"
+        else:
+            return f"{self.nom} n'est déjà pas dans la liste."
 
     
 if __name__ == '__main__':
@@ -113,7 +127,7 @@ if __name__ == '__main__':
     print(banane)
 
     # Ajout de banane dans la bdd
-    # banane._write_items()
+    banane._write_items()
 
     # Récupération des items de la bdd
     print(banane._get_items())
@@ -135,3 +149,6 @@ if __name__ == '__main__':
     # On supprime la noix de coco de la bdd et on revérifie si elle est dedans
     coco._remove_items()
     print(f"Présence noix de coco : {coco._check_item()}")
+
+    # On supprime la banane de la bdd
+    print(banane.delete_item())
