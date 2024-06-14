@@ -52,6 +52,13 @@ class Produit:
 
         Produit.DB.insert({'nom' : self.nom, 'quantite' : self.quantite})
 
+    def _remove_items(self):
+        """Méthode privée utilisée pour retirer un produit et sa quantité dans la bdd.
+        La suppression se fait en recherchant le nom du produit.
+        """
+
+        Produit.DB.remove(where('nom') == self.nom)
+
     def _get_items(self) -> List[tuple]:
         """Méthode privée utilisée pour récupérer tous les éléments de notre bdd sous forme de liste de tuple (nom, quantite).
 
@@ -124,3 +131,7 @@ if __name__ == '__main__':
     # On utilise la méthode 'add_item()' sur notre noix de coco pour l'ajouter à la bdd (JSON)
     print(coco.add_item())
     print(f"La noix de coco est elle dans la liste : {coco._check_item()}")
+
+    # On supprime la noix de coco de la bdd et on revérifie si elle est dedans
+    coco._remove_items()
+    print(f"Présence noix de coco : {coco._check_item()}")

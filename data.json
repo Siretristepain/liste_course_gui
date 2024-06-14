@@ -3,10 +3,6 @@
         "1": {
             "nom": "Banane",
             "quantite": "1"
-        },
-        "2": {
-            "nom": "Noix de coco",
-            "quantite": "1"
         }
     }
 }
