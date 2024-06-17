@@ -50,7 +50,8 @@ class App(QtWidgets.QWidget):
 
         for item in all_items:
             # Pour chaque item on crée une QListWidgetItem pour lier l'item à une instance via setData
-            lw_item = QtWidgets.QListWidgetItem(item.nom)
+            # On ajoute 'item.name_and_quantity' dans lw_item et pas seulement 'item.nom' afin de pouvoir voir la quantité de l'item désirée
+            lw_item = QtWidgets.QListWidgetItem(item.name_and_quantity)
 
             lw_item.setData(QtCore.Qt.UserRole, item)
             self.listWidget.addItem(lw_item)

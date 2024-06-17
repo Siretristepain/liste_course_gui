@@ -37,7 +37,7 @@ class Produit:
         return f"Produit({self.nom}, {self.quantite})"
     
     @property
-    def _name_and_quantity(self):
+    def name_and_quantity(self):
         """Propriété qui associe le nom du produit à sa quantité : Banane (x6).
 
         Returns:
@@ -152,8 +152,8 @@ if __name__ == '__main__':
     coco = Produit(nom="noix de coco")
     print(f"La noix de coco est elle dans la liste : {coco._check_item()}")
 
-    # On utilise la propriété _name_and_quantity pour vérifier qu'elle a bien le comportement attendu
-    print(coco._name_and_quantity)
+    # On utilise la propriété name_and_quantity pour vérifier qu'elle a bien le comportement attendu
+    print(coco.name_and_quantity)
 
     # On utilise la méthode 'add_item()' sur notre noix de coco pour l'ajouter à la bdd (JSON)
     print(coco.add_item())
