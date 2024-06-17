@@ -121,6 +121,19 @@ class Produit:
         else:
             return f"{self.nom} n'est déjà pas dans la liste."
 
+def get_items():
+    # Liste d'instances de tous les produits de notre liste
+    items = []
+
+    # On récupère tous les produits de la bdd
+    all_items = [(x['nom'], x['quantite']) for x in Produit.DB]
+
+    # On boucle sur tous les produits et on stocke dans 'items' les instances
+    for tpl in all_items:
+        items.append(Produit(tpl[0]))
+
+    return items
+
     
 if __name__ == '__main__':
     banane = Produit("banane")
@@ -151,4 +164,7 @@ if __name__ == '__main__':
     print(f"Présence noix de coco : {coco._check_item()}")
 
     # On supprime la banane de la bdd
-    print(banane.delete_item())
+    # print(banane.delete_item())
+
+    # Print get_items
+    print(get_items())
