@@ -1,5 +1,5 @@
 from PySide2 import QtWidgets, QtCore
-from liste_course import get_items
+from liste_course import Produit, get_items
 
 class App(QtWidgets.QWidget):
     def __init__(self):
@@ -12,7 +12,7 @@ class App(QtWidgets.QWidget):
     def setup_ui(self):
         """Méthode pour définir l'organisation de l'interface visuelle de l'application.
         """
-        
+
         # On défini ici le layout principal ainsi que les différents widgets qui vont le composer
         self.layout = QtWidgets.QVBoxLayout(self)
         self.lineEdit = QtWidgets.QLineEdit()
@@ -49,6 +49,27 @@ class App(QtWidgets.QWidget):
             lw_item.setData(QtCore.Qt.UserRole, item)
             self.listWidget.addItem(lw_item)
 
+    def add_item(self):
+        # On récupère le texte de la LineEdit
+        item = self.lineEdit.text()
+
+        # On vérifie que le texte ne soit pas vide
+        if item == False:
+            return False
+        
+        # On créer une instance de notre item
+        item_to_add = Produit(item)
+
+        # On ajoute notre nouveau produit à notre bdd
+        item_to_add.add_item()
+
+        # On vas lié notre item à une instance puis ajouter l'item à la ListWidget
+        lw_item = QtWidgets.QListWidgetItem(item_to_add.nom)
+        lw_item.setData(QtCore.Qt.UserRole, item_to_add)
+        self.listWidget.addItem(lw_item)
+
+        # On enlève le texte de la LineEdit
+        self.lineEdit.setText("")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
