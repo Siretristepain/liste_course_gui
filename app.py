@@ -50,6 +50,16 @@ class App(QtWidgets.QWidget):
             self.listWidget.addItem(lw_item)
 
     def add_item(self):
+        """Méthode qui ajoute l'item donné par l'utilisateur dans la liste de course.
+        Pour cela, on récupère le texte de la LineEdit.
+        A partir de ce texte on crée une instance de Produit.
+        On lie l'instance avec le texte (-> cad le nom du produit).
+        On ajoute le nom du produit dans la liste et on ajoute l'instance dans la bdd (JSON).
+
+        Returns:
+            (bool) : False dans le cas où le texte saisi par l'utilisateur est vide.
+        """
+        
         # On récupère le texte de la LineEdit
         item = self.lineEdit.text()
 
