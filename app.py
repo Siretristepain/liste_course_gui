@@ -6,6 +6,7 @@ class App(QtWidgets.QWidget):
         super().__init__()
         self.setWindowTitle("Liste de course")
         self.setup_ui()
+        self.setup_connections()
         self.show_items()
         self.resize(600,500)
 
@@ -42,7 +43,9 @@ class App(QtWidgets.QWidget):
         self.layout.addLayout(self.bottom_child_layout)
 
     def setup_connections(self):
-        pass
+        self.button_add.clicked.connect(self.add_item)
+        self.lineEdit.returnPressed.connect(self.add_item)
+        self.button_remove.clicked.connect(self.remove_item)
 
     def show_items(self):
         """Méthode pour afficher les éléments présents dans la bdd (JSON) sur la ListWidget.
@@ -87,7 +90,7 @@ class App(QtWidgets.QWidget):
         item_to_add.add_item()
 
         # On vas lié notre item à une instance puis ajouter l'item à la ListWidget
-        lw_item = QtWidgets.QListWidgetItem(item_to_add.nom)
+        lw_item = QtWidgets.QListWidgetItem(item_to_add.name_and_quantity)
         lw_item.setData(QtCore.Qt.UserRole, item_to_add)
         self.listWidget.addItem(lw_item)
 
@@ -97,7 +100,7 @@ class App(QtWidgets.QWidget):
     def remove_item(self):
         """Méthode qui permet de supprimer les éléments séléctionnés, à la fois de la ListWidget et de la bdd (JSON).
         """
-        
+
         for selected_item in self.listWidget.selectedItems():
             # On récupère l'instance qu'on avait liée au nom du produit
             item = selected_item.data(QtCore.Qt.UserRole)
