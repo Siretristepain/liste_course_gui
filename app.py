@@ -16,21 +16,27 @@ class App(QtWidgets.QWidget):
         # On défini ici le layout principal ainsi que les différents widgets qui vont le composer
         self.layout = QtWidgets.QVBoxLayout(self)
         self.lineEdit = QtWidgets.QLineEdit()
+        self.spinBox = QtWidgets.QSpinBox()
         self.button_add = QtWidgets.QPushButton("Ajouter")
         self.listWidget = QtWidgets.QListWidget()
         self.button_remove = QtWidgets.QPushButton("Retirer")
         self.button_clean = QtWidgets.QPushButton("Nettoyer")
 
+        # Création du sous-layout pour la lineEdit et la spinBox pour qu'ils soient côte à côte
+        self.top_child_layout = QtWidgets.QHBoxLayout()
+        self.top_child_layout.addWidget(self.lineEdit)
+        self.top_child_layout.addWidget(self.spinBox)
+
         # Création du sous-layout pour les boutons 'Retirer' et 'Nettoyer' pour qu'ils soient côte à côte
-        self.child_layout = QtWidgets.QHBoxLayout()
-        self.child_layout.addWidget(self.button_remove)
-        self.child_layout.addWidget(self.button_clean)
+        self.bottom_child_layout = QtWidgets.QHBoxLayout()
+        self.bottom_child_layout.addWidget(self.button_remove)
+        self.bottom_child_layout.addWidget(self.button_clean)
 
         # On ajoute les widgets au layout principal
-        self.layout.addWidget(self.lineEdit)
+        self.layout.addLayout(self.top_child_layout)
         self.layout.addWidget(self.button_add)
         self.layout.addWidget(self.listWidget)
-        self.layout.addLayout(self.child_layout)
+        self.layout.addLayout(self.bottom_child_layout)
 
     def setup_connections(self):
         pass
@@ -59,7 +65,7 @@ class App(QtWidgets.QWidget):
         Returns:
             (bool) : False dans le cas où le texte saisi par l'utilisateur est vide.
         """
-        
+
         # On récupère le texte de la LineEdit
         item = self.lineEdit.text()
 
