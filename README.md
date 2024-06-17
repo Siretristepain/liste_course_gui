@@ -24,3 +24,7 @@ La base de donnée est crée via le module tinydb. Il s'agit de petite base de d
 - Une méthode qui permet d'ajouter un produit dans la liste. Elle serait basée sur notre méthode existante '_write_item()' mais ferait au préalable le check du produit (on ne veut pas ajouter un produit qu'il y a déjà dans la liste). Ce check serait fait par notre méthode '_check_item()'. => **FAIT** (add_item)
 - Une méthode privée pour supprimer un élément de la bdd. -> Sur le même fonctionnement que '_write_item()'. => **FAIT** (_remove_items())
 - Une méthode qui à l'inverse de celle au point 2 permettrait de supprimer un produit. Sur le même modèle, on appliquerait la méthode '_check_item()'. Si elle retourne True, c'est que le produit existe, alors on le supprime via notre future méthode privée faite pour ça (point 3). => **FAIT** (delete_item())
+
+Il va falloir trouver une solution dans la méthode add_item de notre app pour faire en sorte d'incrémenter de 1 la quantité d'un produit si on en ajoute à nouveau. Je ne sais pas encore comment faire ça.
+
+Il faudra ensuite comprendre comment faire pour prendre la valeur de la spinBox et l'insérer comme quantité à notre instance.
