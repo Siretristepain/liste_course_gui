@@ -19,6 +19,9 @@ class App(QtWidgets.QWidget):
         self.spinBox = QtWidgets.QSpinBox()
         self.button_add = QtWidgets.QPushButton("Ajouter")
         self.listWidget = QtWidgets.QListWidget()
+        # La ligne suivante permet d'avoir un comportement + ergonomique pour séléctionner plusieurs items à la fois
+        # Ce sera utile pour supprimer plusieurs éléments d'un coup par exemple
+        self.listWidget.setSelectionMode(QtWidgets.QListWidget.ExtendedSelection)
         self.button_remove = QtWidgets.QPushButton("Retirer")
         self.button_clean = QtWidgets.QPushButton("Nettoyer")
 
@@ -77,6 +80,9 @@ class App(QtWidgets.QWidget):
         # On créer une instance de notre item
         item_to_add = Produit(item)
 
+        # Ici il faut que l'on vérifie si l'item à ajouter n'est pas déjà dans la liste, auquel cas on veut simplement incrémenter de 1 sa quantité
+        # A FAIRE
+
         # On ajoute notre nouveau produit à notre bdd
         item_to_add.add_item()
 
@@ -87,6 +93,18 @@ class App(QtWidgets.QWidget):
 
         # On enlève le texte de la LineEdit
         self.lineEdit.setText("")
+
+    def remove_item(self):
+        """Méthode qui permet de supprimer les éléments séléctionnés, à la fois de la ListWidget et de la bdd (JSON).
+        """
+        
+        for selected_item in self.listWidget.selectedItems():
+            # On récupère l'instance qu'on avait liée au nom du produit
+            item = selected_item.data(QtCore.Qt.UserRole)
+            # On applique la méthode delete_item dessus pour le retirer de la bdd
+            item.delete_item()
+            # On retire ensuite les items séléctionnés de la listWidget
+            self.listWidget.takeItem(self.listWidget.row(selected_item))
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
