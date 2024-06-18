@@ -1,5 +1,5 @@
 from PySide2 import QtWidgets, QtCore
-from liste_course import Produit, get_items
+from liste_course import Produit, get_items, clean_all
 
 class App(QtWidgets.QWidget):
     def __init__(self):
@@ -48,6 +48,7 @@ class App(QtWidgets.QWidget):
         self.button_add.clicked.connect(self.add_item)
         self.lineEdit.returnPressed.connect(self.add_item)
         self.button_remove.clicked.connect(self.remove_item)
+        self.button_clean.clicked.connect(self.clean)
 
     def show_items(self):
         """Méthode pour afficher les éléments présents dans la bdd (JSON) sur la ListWidget.
@@ -116,6 +117,17 @@ class App(QtWidgets.QWidget):
             item.delete_item()
             # On retire ensuite les items séléctionnés de la listWidget
             self.listWidget.takeItem(self.listWidget.row(selected_item))
+
+    def clean(self):
+        """Méthode utilisée pour nettoyer toute la base de donnée.
+        Elle fait appel à la méthode 'clean_all()'.
+        """
+
+        # Méthode pour supprimer tous les éléments de la bdd
+        clean_all()
+
+        # On nettoye toute la listWidget de notre GUI
+        self.listWidget.clear()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
