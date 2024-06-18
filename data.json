@@ -3,6 +3,14 @@
         "5": {
             "nom": "Orange",
             "quantite": "1"
+        },
+        "6": {
+            "nom": "Potatoes",
+            "quantite": 5
+        },
+        "7": {
+            "nom": "Bananes",
+            "quantite": 5
         }
     }
 }

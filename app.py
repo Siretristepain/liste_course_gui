@@ -76,12 +76,15 @@ class App(QtWidgets.QWidget):
         # On récupère le texte de la LineEdit
         item = self.lineEdit.text()
 
+        # On récupère la valeur (= quantité) de la spinBox
+        quantiy = self.spinBox.value()
+
         # On vérifie que le texte ne soit pas vide
         if item == "":
             return False
         
         # On créer une instance de notre item
-        item_to_add = Produit(item)
+        item_to_add = Produit(item, quantiy)
 
         # Ici il faut que l'on vérifie si l'item à ajouter n'est pas déjà dans la liste, auquel cas on veut simplement incrémenter de 1 sa quantité
         # A FAIRE
@@ -94,6 +97,9 @@ class App(QtWidgets.QWidget):
         lw_item.setData(QtCore.Qt.UserRole, item_to_add)
         self.listWidget.addItem(lw_item)
 
+        # On remet la valeur de la spinBox sur 1
+        self.spinBox.setValue(1)
+        
         # On enlève le texte de la LineEdit
         self.lineEdit.setText("")
 
