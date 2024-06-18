@@ -77,7 +77,7 @@ class App(QtWidgets.QWidget):
         item = self.lineEdit.text()
 
         # On vérifie que le texte ne soit pas vide
-        if item == False:
+        if item == "":
             return False
         
         # On créer une instance de notre item
