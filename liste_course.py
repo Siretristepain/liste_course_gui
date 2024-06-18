@@ -120,6 +120,12 @@ class Produit:
             return f"{self.nom} supprimé de la liste"
         else:
             return f"{self.nom} n'est déjà pas dans la liste."
+        
+    def clean_all(self):
+        """Méthode utilisée pour nettoyer toute la base de donnée (JSON)
+        """
+        
+        Produit.DB.truncate()
 
 def get_items():
     # Liste d'instances de tous les produits de notre liste
