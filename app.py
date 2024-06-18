@@ -95,7 +95,7 @@ class App(QtWidgets.QWidget):
             return False
         
         # On créer une instance de notre item
-        item_to_add = Produit(item, quantity)
+        item_to_add = Produit(item, str(quantity))
 
         # On ajoute notre nouveau produit à notre bdd
         ajout = item_to_add.add_item(x=quantity)
