@@ -25,6 +25,8 @@ class App(QtWidgets.QWidget):
         self.listWidget.setSelectionMode(QtWidgets.QListWidget.ExtendedSelection)
         self.button_remove = QtWidgets.QPushButton("Retirer")
         self.button_clean = QtWidgets.QPushButton("Nettoyer")
+        # On défini la valeur de base de la spinBox sur 1
+        self.spinBox.setValue(1)
 
         # Création du sous-layout pour la lineEdit et la spinBox pour qu'ils soient côte à côte
         self.top_child_layout = QtWidgets.QHBoxLayout()
