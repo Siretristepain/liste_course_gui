@@ -1,11 +1,12 @@
 from PySide2 import QtWidgets
-from tinydb import TinyDB, where
+from tinydb import TinyDB, Query, where
 from pathlib import Path
 from typing import List
 
 class Produit:
     # On initialise une instance de TinyDB en attribut de classe
     DB = TinyDB(Path(__file__).resolve().parent / 'data.json', indent=4)
+    Prod = Query()
 
     def __init__(self, nom: str, quantite = "1"):
         """Méthode d'initialisation de nos instances de Produit.
@@ -101,11 +102,11 @@ class Produit:
         # D'abord on vérifie que l'item ne soit pas déjà dans la bdd
         if self._check_item() == False:
             self._write_items()
-            return f"{self.nom} ajouté à la liste"
+            return True
+        # Si l'item est déjà dans la bdd, on fait appel à la méthode 'change_quantite()' pour incrémenter sa quantité
         else:
-            return f"{self.nom} déjà dans la liste."
-            # Là on pourrait ajouter une option pour savoir si l'utilisateur souhaite 
-            # quand même ajouter l'item, auquel cas on ferait +1 sur la quantité de l'item.
+            self.change_quantite()
+            return False
 
     def delete_item(self):
         """Méthode pour supprimer un élément dans la bdd (JSON).
@@ -120,6 +121,21 @@ class Produit:
             return f"{self.nom} supprimé de la liste"
         else:
             return f"{self.nom} n'est déjà pas dans la liste."
+        
+    def change_quantite(self, x: int = 1):
+        """Méthode utilisée dans le cas où l'on ajoute un produit déjà présent dans la liste de course.
+        Dans ce cas là, on incrémente de la quantité souhaitée la quantité de cet élément dans la bdd.
+
+        Args:
+            x (int, optional): La quantité de l'élément qu'on souhaite ajoutée. (-> retour spinBox). Defaults to 1.
+        """
+
+        # On récupère la quantité actuelle du produit dans la bdd
+        current_quantite_bdd = Produit.DB.get(Produit.Prod.nom == self.nom)['quantite']
+        # On incrémente cette valeur de 1 par défaut (-> mais de la valeur de la spinBox en réalité)
+        new_quantite = current_quantite_bdd + x
+        # On met à jour notre quantité dans la bdd
+        Produit.DB.update({'quantite' : new_quantite}, where('nom') == self.nom)
 
 def get_items():
     # Liste d'instances de tous les produits de notre liste
