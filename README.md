@@ -9,6 +9,12 @@ L'utilisateur aurait face à lui une interface où il pourrait voir les produits
 L'interface graphique est faite via le module PySide2.
 La base de donnée est crée via le module tinydb. Il s'agit de petite base de donnée très légère utilisant un fichier JSON. Ce type de base de donnée convient très bien à ce genre de projet.
 
+## Présentation
+
+Voici à quoi ressemble mon interface graphique :
+
+![capture_gui_20240618](./images/capture_gui_20240618.png)
+
 ## Les points importants (à faire)
 
 - Il y aurait une LineEdit pour écrire le produit à ajouter.
@@ -27,4 +33,4 @@ La base de donnée est crée via le module tinydb. Il s'agit de petite base de d
 
 Il va falloir trouver une solution dans la méthode add_item de notre app pour faire en sorte d'incrémenter de 1 la quantité d'un produit si on en ajoute à nouveau. Je ne sais pas encore comment faire ça.
 
-Il faudra ensuite comprendre comment faire pour prendre la valeur de la spinBox et l'insérer comme quantité à notre instance.
+Il faudra ensuite comprendre comment faire pour prendre la valeur de la spinBox et l'insérer comme quantité à notre instance. => **FAIT**
