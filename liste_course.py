@@ -130,7 +130,7 @@ def get_items():
 
     # On boucle sur tous les produits et on stocke dans 'items' les instances
     for tpl in all_items:
-        items.append(Produit(tpl[0]))
+        items.append(Produit(tpl[0], tpl[1]))
 
     return items
 
