@@ -31,6 +31,6 @@ Voici à quoi ressemble mon interface graphique :
 - Une méthode privée pour supprimer un élément de la bdd. -> Sur le même fonctionnement que '_write_item()'. => **FAIT** (_remove_items())
 - Une méthode qui à l'inverse de celle au point 2 permettrait de supprimer un produit. Sur le même modèle, on appliquerait la méthode '_check_item()'. Si elle retourne True, c'est que le produit existe, alors on le supprime via notre future méthode privée faite pour ça (point 3). => **FAIT** (delete_item())
 
-Il va falloir trouver une solution dans la méthode add_item de notre app pour faire en sorte d'incrémenter de 1 la quantité d'un produit si on en ajoute à nouveau. Je ne sais pas encore comment faire ça.
+Il va falloir trouver une solution dans la méthode add_item de notre app pour faire en sorte d'incrémenter de 1 la quantité d'un produit si on en ajoute à nouveau. Je ne sais pas encore comment faire ça. => **FAIT**
 
 Il faudra ensuite comprendre comment faire pour prendre la valeur de la spinBox et l'insérer comme quantité à notre instance. => **FAIT**
