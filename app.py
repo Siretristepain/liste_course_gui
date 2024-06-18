@@ -67,8 +67,15 @@ class App(QtWidgets.QWidget):
 
     def add_item(self):
         """Méthode qui ajoute l'item donné par l'utilisateur dans la liste de course.
+        On récupère la valeur issue de la spinBox (-> quantité souhaitée).
         Pour cela, on récupère le texte de la LineEdit.
         A partir de ce texte on crée une instance de Produit.
+        On utilise la méthode add_item() sur notre Produit pour l'ajouter à la bdd.
+        Deux options :
+
+        - soit le produit existait déjà dans la bdd, auquel cas on implémente sa quantité de la valeur issue de la spinBox.
+        - soit le produit n'existait pas déjà dans la bdd, auquel cas la suite :
+
         On lie l'instance avec le texte (-> cad le nom du produit).
         On ajoute le nom du produit dans la liste et on ajoute l'instance dans la bdd (JSON).
 
@@ -80,25 +87,31 @@ class App(QtWidgets.QWidget):
         item = self.lineEdit.text()
 
         # On récupère la valeur (= quantité) de la spinBox
-        quantiy = self.spinBox.value()
+        quantity = self.spinBox.value()
 
         # On vérifie que le texte ne soit pas vide
         if item == "":
             return False
         
         # On créer une instance de notre item
-        item_to_add = Produit(item, quantiy)
-
-        # Ici il faut que l'on vérifie si l'item à ajouter n'est pas déjà dans la liste, auquel cas on veut simplement incrémenter de 1 sa quantité
-        # A FAIRE
+        item_to_add = Produit(item, quantity)
 
         # On ajoute notre nouveau produit à notre bdd
-        item_to_add.add_item()
+        ajout = item_to_add.add_item(x=quantity)
 
-        # On vas lié notre item à une instance puis ajouter l'item à la ListWidget
-        lw_item = QtWidgets.QListWidgetItem(item_to_add.name_and_quantity)
-        lw_item.setData(QtCore.Qt.UserRole, item_to_add)
-        self.listWidget.addItem(lw_item)
+        # Si ajout == False, cela signifie que le produit qu'on souhaite ajouté est déjà dans la bdd.
+        # Dans ce cas, le back-end à simplement incrémenté la quantité de ce produit de x (x étant la valeur dans la spinBox -> variable 'quantity')
+
+        # Si ajout == True, cela signifie que le produit qu'on souhaite ajouté n'était pas déjà présent dans la bdd, auquel cas on l'ajoute simplement.
+        if ajout == True:
+            # On vas lié notre item à une instance puis ajouter l'item à la ListWidget
+            lw_item = QtWidgets.QListWidgetItem(item_to_add.name_and_quantity)
+            lw_item.setData(QtCore.Qt.UserRole, item_to_add)
+            self.listWidget.addItem(lw_item)
+
+        # On "rafraichit" (nettoye) la listWidget et on refait appel à la méthode show_items()
+        self.listWidget.clear()
+        self.show_items()
 
         # On remet la valeur de la spinBox sur 1
         self.spinBox.setValue(1)

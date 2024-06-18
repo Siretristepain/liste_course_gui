@@ -1,31 +1,19 @@
 {
     "_default": {
         "1": {
-            "nom": "Oranges",
-            "quantite": 4
-        },
-        "2": {
-            "nom": "C\u00e9r\u00e9ales",
-            "quantite": 1
-        },
-        "3": {
             "nom": "Pain",
             "quantite": 1
         },
+        "2": {
+            "nom": "Pates",
+            "quantite": 1
+        },
+        "3": {
+            "nom": "Bananes",
+            "quantite": 5
+        },
         "4": {
-            "nom": "Bananes ",
-            "quantite": 6
-        },
-        "5": {
-            "nom": "Farine",
-            "quantite": 1
-        },
-        "6": {
-            "nom": "G\u00e2teau",
-            "quantite": 1
-        },
-        "7": {
-            "nom": "Courgettes",
+            "nom": "Chocolat",
             "quantite": 2
         }
     }
