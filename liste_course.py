@@ -90,10 +90,13 @@ class Produit:
                 return True
         return False
     
-    def add_item(self):
+    def add_item(self, x: int = 1):
         """Méthode pour ajouter un élément dans la bdd (JSON).
         Elle utilise notre méthode privée _write_items() et _check_item() en amont.
         Si l'item est déjà dans la bdd, elle ne l'ajoute pas.
+
+        Args:
+            x (int, optionnal) : nombre (-> quantité) du produit à ajouter dans le cas où le produit existe déjà dans la bdd. Default to 1.
 
         Returns:
             (str) : Information sur l'ajout (ou le non ajout) de l'item à la bdd.
@@ -105,7 +108,7 @@ class Produit:
             return True
         # Si l'item est déjà dans la bdd, on fait appel à la méthode 'change_quantite()' pour incrémenter sa quantité
         else:
-            self.change_quantite()
+            self.change_quantite(x=x)
             return False
 
     def delete_item(self):
