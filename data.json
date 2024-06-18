@@ -1,20 +1,16 @@
 {
     "_default": {
         "1": {
-            "nom": "Pain",
+            "nom": "Chocolat",
             "quantite": 1
         },
         "2": {
-            "nom": "Pates",
-            "quantite": 1
+            "nom": "Pain",
+            "quantite": 2
         },
         "3": {
-            "nom": "Bananes",
-            "quantite": 5
-        },
-        "4": {
-            "nom": "Chocolat",
-            "quantite": 2
+            "nom": "Oeufs",
+            "quantite": 12
         }
     }
 }

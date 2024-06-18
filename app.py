@@ -8,6 +8,7 @@ class App(QtWidgets.QWidget):
         self.setup_ui()
         self.setup_connections()
         self.show_items()
+        self.setup_css()
         self.resize(600,500)
 
     def setup_ui(self):
@@ -141,6 +142,27 @@ class App(QtWidgets.QWidget):
 
         # On nettoye toute la listWidget de notre GUI
         self.listWidget.clear()
+
+    def setup_css(self):
+        self.setStyleSheet("""
+        background-color: rgb(70,70,70);
+        color: rgb(240,240,240)
+        """)
+
+        self.button_clean.setStyleSheet("""
+        background-color: rgb(170,15,15);
+        """)
+
+        self.lineEdit.setStyleSheet("""
+        background-color: rgb(228,228,228);
+        color: rgb(30,30,30);
+        """)
+
+        self.listWidget.setStyleSheet("""
+        background-color: rgb(228,228,228);
+        color: rgb(100,100,100);
+        """)
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
