@@ -5,12 +5,12 @@
             "quantite": "1"
         },
         "2": {
-            "nom": "Oranges",
-            "quantite": "1"
+            "nom": "Bananes",
+            "quantite": 6
         },
         "3": {
-            "nom": "Bananes",
-            "quantite": "2"
+            "nom": "Poires",
+            "quantite": "1"
         }
     }
 }

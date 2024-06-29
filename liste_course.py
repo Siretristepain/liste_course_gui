@@ -136,7 +136,7 @@ class Produit:
         # On récupère la quantité actuelle du produit dans la bdd
         current_quantite_bdd = Produit.DB.get(Produit.Prod.nom == self.nom)['quantite']
         # On incrémente cette valeur de 1 par défaut (-> mais de la valeur de la spinBox en réalité)
-        new_quantite = current_quantite_bdd + x
+        new_quantite = int(current_quantite_bdd) + x
         # On met à jour notre quantité dans la bdd
         Produit.DB.update({'quantite' : new_quantite}, where('nom') == self.nom)
 
